@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor NOC v4.3 - Documentación Completa</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --secondary: #00ccff;
+            --success: #00cc66;
+            --warning: #ff9900;
+            --danger: #ff3366;
+            --dark: #0a0e27;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --border: #dee2e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .documentation-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0066cc 0%, #00ccff 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header .version {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: normal;
+        }
+
+        .header .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: var(--dark);
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-tabs li {
+            flex: 1;
+        }
+
+        .nav-tabs a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-tabs a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-tabs a.active {
+            background: rgba(255,255,255,0.15);
+            border-bottom-color: var(--secondary);
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h2 {
+            color: var(--primary);
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            color: var(--dark);
+            margin: 20px 0 10px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .card.warning {
+            border-left-color: var(--warning);
+            background: #fff3cd;
+        }
+
+        .card.success {
+            border-left-color: var(--success);
+            background: #d4edda;
+        }
+
+        .card.danger {
+            border-left-color: var(--danger);
+            background: #f8d7da;
+        }
+
+        .card.info {
+            border-left-color: var(--secondary);
+            background: #d1ecf1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .controls-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .controls-table th,
+        .controls-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .controls-table th {
+            background: var(--dark);
+            color: white;
+        }
+
+        .controls-table tr:hover {
+            background: rgba(0,102,204,0.05);
+        }
+
+        .icon-cell {
+            font-size: 1.5rem;
+            text-align: center;
+            width: 60px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-green  { background: var(--success); }
+        .status-yellow { background: var(--warning); }
+        .status-orange { background: #ff6600; }
+        .status-red    { background: var(--danger); }
+        .status-blue   { background: var(--primary); }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .comparison-table th {
+            background: var(--dark);
+            color: white;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .badge-primary { background: var(--primary); color: white; }
+        .badge-success { background: var(--success); color: white; }
+        .badge-warning { background: var(--warning); color: white; }
+        .badge-danger { background: var(--danger); color: white; }
+        .badge-enterprise { background: #9c27b0; color: white; }
+
+        .workflow-step {
+            counter-increment: step;
+            margin: 20px 0;
+            padding-left: 50px;
+            position: relative;
+        }
+
+        .workflow-step:before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .problem-solution {
+            display: flex;
+            margin: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .problem {
+            flex: 1;
+            background: #ffe6e6;
+            padding: 15px;
+            border-right: 1px solid var(--border);
+        }
+
+        .solution {
+            flex: 1;
+            background: #e6ffe6;
+            padding: 15px;
+        }
+
+        .quote {
+            font-style: italic;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .quote:before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+            margin-left: -10px;
+        }
+
+        .toggle-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .toggle-content.active {
+            max-height: 1000px;
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .toggle-btn:after {
+            content: '▶';
+            float: right;
+            transition: transform 0.3s;
+        }
+
+        .toggle-btn.active:after {
+            transform: rotate(90deg);
+        }
+
+        .knowledge-level {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .level-basic { background: #4caf50; color: white; }
+        .level-intermediate { background: #ff9800; color: white; }
+        .level-advanced { background: #f44336; color: white; }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin: 20px 0;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-link-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            background: white;
+            margin: 15px 0;
+        }
+
+        .video-link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .video-link-card:hover .video-thumbnail img {
+            opacity: 0.8;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            transition: transform 0.3s;
+        }
+
+        .video-link-card:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .video-info {
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .video-info h5 {
+            margin: 0 0 10px 0;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .video-info p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs { flex-direction: column; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .controls-table, .comparison-table { font-size: 0.9rem; }
+            .header h1 { flex-direction: column; gap: 10px; }
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .enterprise-banner {
+            background: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .download-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--success) 0%, #4caf50 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .download-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .download-steps {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .download-steps li { margin-bottom: 10px; }
+
+        .step-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 15px 0;
+            border: 1px solid var(--border);
+        }
+
+        .note-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--primary);
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        .step-title {
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark);
+            vertical-align: middle;
+        }
+
+        .step-content {
+            margin-top: 20px;
+            padding-left: 55px;
+        }
+
+        .warning-icon {
+            color: #ff9800;
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .screenshot-container {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px dashed var(--border);
+        }
+
+        .screenshot {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+
+        .screenshot-caption {
+            margin-top: 10px;
+            font-style: italic;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .dependency-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .resource-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s;
+        }
+
+        .resource-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left-color: var(--primary);
+        }
+
+        .resource-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .download-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="documentation-card">
+            <!-- Header -->
+            <div class="header">
+                <h1>
+                    <span>MONITOR NOC</span>
+                    <span class="version">STANDARD</span>
+                </h1>
+                <p class="tagline">"No reinventamos la rueda... ¡La hacemos rodar 10 veces más rápida!"</p>
+            </div>
+
+            <!-- Navigation Tabs (eliminadas las pestañas "Pestañas" y "Botón de Reporte HTML") -->
+            <ul class="nav-tabs" id="navTabs">
+                <li><a href="#overview" class="active">📖 Descripción</a></li>
+                <li><a href="#controls">🎛️ Controles</a></li>
+                <li><a href="#troubleshooting">🆘 Solución Problemas</a></li>
+                <li><a href="#download">⬇️ Descargar</a></li>
+            </ul>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-content active">
+                    <div class="section">
+                        <h2>¿Por qué Monitor NOC?</h2>
+                        <div class="card">
+                            <p><strong>Monitor NOC es la integración inteligente de herramientas de red clásicas</strong> en una interfaz profesional que multiplica tu productividad.</p>
+                        </div>
+
+                        <h3>👥 Para quién es esta herramienta</h3>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">👨‍💼</div>
+                                <h4>Técnicos Help Desk</h4>
+                                <p>Diagnóstico rápido sin comandos complejos</p>
+                                <span class="knowledge-level level-basic">Nivel Básico</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">👩‍💼</div>
+                                <h4>Administradores de Red</h4>
+                                <p>Monitoreo múltiple en tiempo real</p>
+                                <span class="knowledge-level level-intermediate">Nivel Intermedio</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">👨‍🔧</div>
+                                <h4>Equipos NOC</h4>
+                                <p>Alertas y contactos integrados</p>
+                                <span class="knowledge-level level-intermediate">Nivel Intermedio</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">👨‍🏫</div>
+                                <h4>Capacitadores TI</h4>
+                                <p>Visualización didáctica de conceptos</p>
+                                <span class="knowledge-level level-basic">Nivel Básico</span>
+                            </div>
+                        </div>
+
+                        <h3>🏗️ Arquitectura en 3 Capas</h3>
+                        <div class="card">
+                            <p><strong>🎨 Capa 1: Interfaz Visual</strong> - Dashboard unificado, botones intuitivos, gráficos en tiempo real</p>
+                            <p><strong>⚙️ Capa 2: Módulos Especializados</strong> - ICMP Echo, TCP Connect, Sistema de Alertas, Escáner de Red y Diagnóstico Avanzado</p>
+                            <p><strong>🔧 Capa 3: Herramientas Núcleo</strong> - Comandos ping/tracert del sistema, sockets TCP nativos, caché ARP y escaneo de puertos</p>
+                        </div>
+
+                        <div class="card success">
+                            <h3>🆕 Novedades de esta versión</h3>
+                            <ul>
+                                <li>🔍 <strong>Escáner de Red:</strong> desde la pestaña ICMP, ingresa la IP de tu router y descubre automáticamente los equipos activos (ping sweep + caché ARP). Los equipos detectados se agregan como monitores listos para usar.</li>
+                                <li>🖥️ <strong>Detección de Sistema Operativo:</strong> cada monitor ICMP ahora estima el sistema operativo del equipo remoto junto a su latencia.</li>
+                                <li>🩺 <strong>Diagnóstico Completo:</strong> el botón de TRACERT abre ahora una suite de diagnóstico en 5 fases (Traceroute + DNS, resolución DNS, Ping extendido con jitter, escaneo de puertos y descubrimiento de MTU) en una sola ventana.</li>
+                                <li>🗑️ <strong>Control por nodo:</strong> cada monitor (ICMP y TCP) tiene su propio botón "REMOVER" individual, además del botón general para limpiar toda la pestaña.</li>
+                                <li>📦 <strong>Más monitores por pestaña:</strong> el límite subió de 20 a <strong>30 monitores</strong> por pestaña.</li>
+                                <li>💾 <strong>Persistencia portable:</strong> la configuración y los reportes ya no dependen de una ruta fija en <code>C:\</code>; se guardan junto al programa, en su propia carpeta <code>Reports\</code>, ideal para uso portable.</li>
+                            </ul>
+                        </div>
+
+                        <button class="toggle-btn">📊 Comparación: Herramientas Clásicas vs Monitor NOC</button>
+                        <div class="toggle-content">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Necesidad</th>
+                                        <th>Solución Tradicional</th>
+                                        <th>Solución NM v4.3</th>
+                                        <th>Ahorro</th>
+                                        <th>Nivel Requerido</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Ver si responde</td>
+                                        <td><code>ping google.com</code></td>
+                                        <td><span class="badge badge-success">START</span> en interfaz visual</td>
+                                        <td><span class="badge badge-primary">90%</span></td>
+                                        <td><span class="knowledge-level level-basic">Básico</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ver ruta completa</td>
+                                        <td><code>tracert google.com</code></td>
+                                        <td><span class="badge badge-success">DIAGNOSTICAR</span> con 5 fases automáticas</td>
+                                        <td><span class="badge badge-primary">85%</span></td>
+                                        <td><span class="knowledge-level level-intermediate">Intermedio</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Validar servicio web</td>
+                                        <td><code>telnet google.com 80</code></td>
+                                        <td><span class="badge badge-success">TCP CONNECT</span> con gráfico</td>
+                                        <td><span class="badge badge-primary">85%</span></td>
+                                        <td><span class="knowledge-level level-intermediate">Intermedio</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Descubrir equipos en la red</td>
+                                        <td>Escaneo manual + <code>arp -a</code></td>
+                                        <td><span class="badge badge-success">ESCANEAR</span> desde la IP del router</td>
+                                        <td><span class="badge badge-primary">90%</span></td>
+                                        <td><span class="knowledge-level level-basic">Básico</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reporte ejecutivo</td>
+                                        <td>Capturas + Excel</td>
+                                        <td><span class="badge badge-success">📊 REPORTE</span> HTML automático</td>
+                                        <td><span class="badge badge-primary">99%</span></td>
+                                        <td><span class="knowledge-level level-basic">Básico</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls Tab -->
+                <div id="controls" class="tab-content">
+                    <div class="section">
+                        <h2>🎛️ CONTROLES - GUÍA VISUAL</h2>
+
+                        <div class="card">
+                            <h3>📌 BARRA SUPERIOR (en cada pestaña)</h3>
+                            <div style="background: var(--dark); color: white; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                                [ ICMP ECHO ]─────────────────────────────────────────────┐<br>
+                                [+]ADD_MONITOR  REMOVER ALL  📊 REPORTE  📁 LOG   ROUTER:[192.168.1.1] ESCANEAR │<br>
+                                └─────────────────────────────────────────────────────────┘
+                            </div>
+
+                            <div class="card info">
+                                <p><strong>💡 Nota:</strong> el bloque <code>ROUTER: [ ] ESCANEAR</code> solo aparece en la pestaña <strong>ICMP ECHO</strong>. Las pestañas TCP CONNECT y ALERT SYSTEM mantienen los mismos 4 botones de gestión, sin el escáner.</p>
+                            </div>
+
+                            <table class="controls-table">
+                                <thead>
+                                    <tr>
+                                        <th width="80">Icono</th>
+                                        <th>Control</th>
+                                        <th>Qué hace</th>
+                                        <th>Notas</th>
+                                        <th>Nivel</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="icon-cell">➕</td>
+                                        <td><strong>Agregar Monitor</strong></td>
+                                        <td>Añade un nuevo campo para monitorear otra IP/URL</td>
+                                        <td>Máximo <span class="highlight">30 por pestaña</span></td>
+                                        <td><span class="knowledge-level level-basic">Básico</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon-cell">➖</td>
+                                        <td><strong>Remover All</strong></td>
+                                        <td>Elimina <strong>todos</strong> los monitores de la pestaña actual (pide confirmación)</td>
+                                        <td>Para quitar solo uno, usa el botón <span class="highlight">REMOVER</span> propio de ese nodo</td>
+                                        <td><span class="knowledge-level level-basic">Básico</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon-cell">📊</td>
+                                        <td><strong>Generar Reporte</strong></td>
+                                        <td>Crea dashboard HTML profesional</td>
+                                        <td>Ideal para presentaciones</td>
+                                        <td><span class="knowledge-level level-basic">Básico</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon-cell">📁</td>
+                                        <td><strong>Abrir Logs</strong></td>
+                                        <td>Accede a la carpeta de reportes y registros</td>
+                                        <td><code>Reports\</code> junto al ejecutable</td>
+                                        <td><span class="knowledge-level level-basic">Básico</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="icon-cell">🔍</td>
+                                        <td><strong>Escanear Red</strong></td>
+                                        <td>Escribe la IP de tu router y detecta los equipos activos de la red (ping sweep + caché ARP)</td>
+                                        <td>Solo en pestaña <strong>ICMP ECHO</strong>. Los equipos hallados se agregan automáticamente como monitores</td>
+                                        <td><span class="knowledge-level level-basic">Básico</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card">
+                            <h3>💾 PERSISTENCIA DE CONFIGURACIÓN</h3>
+                            <p><strong>¿Qué es?</strong> Monitor NOC guarda automáticamente el estado de todos los monitores mientras trabajas.</p>
+                            <p><strong>¿Cómo funciona?</strong> Al cerrar el programa, el estado se guarda junto al ejecutable. Si al volver a abrirlo detecta que había monitores <strong>corriendo</strong> en la sesión anterior, te preguntará si deseas restaurarlos — así tú decides, en vez de que se restaure todo sin avisarte.</p>
+
+                            <h4>📁 Ubicación de configuración:</h4>
+                            <div class="feature-grid">
+                                <div class="feature-item">
+                                    <strong>Carpeta:</strong><br>
+                                    <code>Reports\</code> (se crea junto al .exe, en la misma carpeta donde lo ejecutas)
+                                </div>
+                                <div class="feature-item">
+                                    <strong>Archivos guardados:</strong><br>
+                                    • <code>monitor_state.pkl</code> (estado de monitores)<br>
+                                    • <code>monitor_state_backup.pkl</code> (respaldo automático)<br>
+                                    • Logs y reportes generados
+                                </div>
+                            </div>
+
+                            <h4>⚙️ Comportamiento:</h4>
+                            <ul>
+                                <li>✅ <strong>Guarda automáticamente</strong> al cerrar la aplicación</li>
+                                <li>✅ <strong>Pregunta antes de restaurar</strong> — solo si había monitores activos en la sesión anterior</li>
+                                <li>✅ <strong>Respaldo automático:</strong> si el archivo principal se daña, usa la copia de seguridad</li>
+                                <li>✅ <strong>100% portable</strong> - no usa rutas fijas en <code>C:\</code>; puedes mover la carpeta completa del programa (o llevarla en un USB) y la configuración viaja con ella</li>
+                            </ul>
+
+                            <div class="card info">
+                                <p><strong>💡 Nota:</strong> como todo se guarda junto al ejecutable, si copias Monitor NOC a otra carpeta o equipo, copia también la carpeta <code>Reports\</code> si quieres conservar tu configuración e historial.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>📌 CONTROLES POR NODO (ICMP)</h3>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0; font-family: monospace; border: 1px solid #dee2e6;">
+                                NODE_1 ─────────────────────────────────────────────────┐<br>
+                                IP: [8.8.8.8              ] NODO: [Servidor DNS       ]│<br>
+                                LATENCIA: <span style="color: #00cc66;">15ms</span> SO: <span style="color: #6c757d;">Linux (estimado)</span> │<br>
+                                <span style="background: #00cc66; color: white; padding: 2px 5px;">⯈ START</span> 
+                                <span style="background: #ffffff; color: #000; border:1px solid #333; padding: 2px 5px;">PING</span> 
+                                <span style="background: #ffffff; color: #000; border:1px solid #333; padding: 2px 5px;">TRACERT</span> 
+                                <span style="background: #ff3366; color: white; padding: 2px 5px;">REMOVER</span>   │<br>
+                                STATUS: <span class="status-indicator status-green"></span>EXCELENTE │<br>
+                                └──────────────────────────────────────────────────────┘
+                            </div>
+                            <div class="card info" style="margin-top: 10px;">
+                                <p><strong>💡 Nota:</strong> el botón <strong>PING</strong> abre la consola de ping en vivo. El botón <strong>TRACERT</strong> abre la ventana de <strong>Diagnóstico Completo</strong> (ver abajo). El botón <strong>SO</strong> es solo una estimación basada en el comportamiento de la red y puede no ser exacta en todos los casos.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>🩺 DIAGNÓSTICO COMPLETO (nuevo)</h3>
+                            <p>Al presionar <strong>TRACERT</strong> en cualquier nodo ICMP se abre una ventana con el botón <strong>DIAGNOSTICAR</strong>, que ejecuta 5 fases de forma automática y ordenada:</p>
+                            <table class="controls-table">
+                                <thead>
+                                    <tr><th>Fase</th><th>Qué hace</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1. Traceroute</td><td>Ruta hacia el destino, con resolución DNS por cada salto</td></tr>
+                                    <tr><td>2. DNS</td><td>Resolución directa, PTR del destino y PTR de cada salto</td></tr>
+                                    <tr><td>3. Ping extendido</td><td>20 pings: pérdida, latencia, jitter y un veredicto de calidad</td></tr>
+                                    <tr><td>4. Escaneo de puertos</td><td>Detecta puertos ABIERTO / CERRADO / FILTRADO</td></tr>
+                                    <tr><td>5. MTU</td><td>Calcula la MTU efectiva mediante búsqueda binaria</td></tr>
+                                </tbody>
+                            </table>
+                            <div class="card warning" style="margin-top: 10px;">
+                                <p><strong>⏱️ Ten en cuenta:</strong> el diagnóstico completo puede tardar hasta un par de minutos porque prueba varios puertos y calcula la MTU real; es normal que no sea instantáneo.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>📌 CONTROLES POR NODO (TCP)</h3>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0; font-family: monospace; border: 1px solid #dee2e6;">
+                                TCP_NODE_1 ────────────────────────────────────────────┐<br>
+                                HOST: [google.com         ] PORT: [80]  NODE: [TCP_NODE_1]│<br>
+                                TIMEOUT: [2.0] INTERVALO: [1.0] ○ Continuo ● [10    ]│<br>
+                                SENT: 5 RECV: 5 LOST: 0 LOSS: 0.0% LATENCY: 45ms     │<br>
+                                <span style="background: #00cc66; color: white; padding: 2px 5px;">⯈ START</span> 
+                                <span style="background: #00ccff; color: white; padding: 2px 5px;">Consola</span> 
+                                <span style="background: #ff3366; color: white; padding: 2px 5px;">REMOVER</span>          │<br>
+                                └─────────────────────────────────────────────────────┘
+                            </div>
+                            <div class="card info" style="margin-top: 10px;">
+                                <p><strong>💡 Nota:</strong> el puerto por defecto al agregar un nuevo nodo TCP es <strong>80</strong> (antes 443); puedes cambiarlo al que necesites probar.</p>
+                            </div>
+                        </div>
+
+                        <h3>Colores de Estado</h3>
+                        <div class="feature-grid">
+                            <div class="feature-item" style="border-left-color: #00cc66;">
+                                <span class="status-indicator status-green"></span> <strong>Verde</strong><br>
+                                &lt; 50ms (Excelente)<br>
+                            </div>
+                            <div class="feature-item" style="border-left-color: #ff9900;">
+                                <span class="status-indicator status-yellow"></span> <strong>Amarillo</strong><br>
+                                50-100ms (Aceptable)<br>
+                            </div>
+                            <div class="feature-item" style="border-left-color: #ff6600;">
+                                <span class="status-indicator status-orange"></span> <strong>Naranja</strong><br>
+                                100-200ms (Alerta)<br>
+                            </div>
+                            <div class="feature-item" style="border-left-color: #ff3366;">
+                                <span class="status-indicator status-red"></span> <strong>Rojo</strong><br>
+                                &gt; 200ms (Crítico)<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Troubleshooting -->
+                <div id="troubleshooting" class="tab-content">
+                    <div class="section">
+                        <h2>🆘 SOLUCIÓN DE PROBLEMAS - GUÍA RÁPIDA</h2>
+
+                        <div class="card info">
+                            <h3>🎓 ANTES DE EMPEZAR</h3>
+                            <p>Muchos de estos problemas se resuelven en segundos revisando lo básico: firewall, permisos de administrador o el puerto/protocolo elegido. Si algo no te queda claro, no dudes en pedir apoyo por el grupo de soporte al final de esta sección — no hace falta ser experto en redes para usar Monitor NOC.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <div class="problem">
+                                <h4>Problema</h4>
+                                <p><strong>No agrega más monitores</strong></p>
+                                <small>Nivel: <span class="knowledge-level level-basic">Básico</span></small>
+                            </div>
+                            <div class="solution">
+                                <h4>Solución</h4>
+                                <p>Llegaste al límite de 30 por pestaña. Usa <strong>REMOVER</strong> en algún nodo que ya no necesites para liberar espacio, o quita todos con <strong>REMOVER ALL</strong> y vuelve a agregar solo los que necesitas monitorear.</p>
+                            </div>
+                        </div>
+
+                        <div class="problem-solution">
+                            <div class="problem">
+                                <h4>Problema</h4>
+                                <p><strong>Ping siempre timeout</strong></p>
+                                <small>Nivel: <span class="knowledge-level level-intermediate">Intermedio</span></small>
+                            </div>
+                            <div class="solution">
+                                <h4>Solución</h4>
+                                <p>ICMP probablemente bloqueado. Usar <strong>TCP Connect</strong> en puerto 80/443. Verificar políticas de firewall.</p>
+                            </div>
+                        </div>
+
+                        <div class="problem-solution">
+                            <div class="problem">
+                                <h4>Problema</h4>
+                                <p><strong>El Diagnóstico Completo tarda o no muestra nada</strong></p>
+                                <small>Nivel: <span class="knowledge-level level-intermediate">Intermedio</span></small>
+                            </div>
+                            <div class="solution">
+                                <h4>Solución</h4>
+                                <p>Es normal que tarde hasta un par de minutos: prueba varios puertos y calcula la MTU real. Si no avanza, revisa que el host responda (ICMP o al menos algún puerto TCP) y que tu red/firewall no esté bloqueando el tráfico saliente.</p>
+                            </div>
+                        </div>
+
+                        <div class="problem-solution">
+                            <div class="problem">
+                                <h4>Problema</h4>
+                                <p><strong>El Escáner de Red no encuentra equipos</strong></p>
+                                <small>Nivel: <span class="knowledge-level level-basic">Básico</span></small>
+                            </div>
+                            <div class="solution">
+                                <h4>Solución</h4>
+                                <p>Verifica que la IP del router sea correcta y que estés conectado a esa misma red. Algunos equipos no responden a ping por tener el firewall activo; en ese caso, el escáner igual puede detectarlos por la caché ARP si ya se comunicaron antes en la red.</p>
+                            </div>
+                        </div>
+
+                        <div class="problem-solution">
+                            <div class="problem">
+                                <h4>Problema</h4>
+                                <p><strong>Reporte no se genera</strong></p>
+                                <small>Nivel: <span class="knowledge-level level-basic">Básico</span></small>
+                            </div>
+                            <div class="solution">
+                                <h4>Solución</h4>
+                                <p>Es casi siempre un tema de permisos de escritura. Verifica que el programa pueda crear la carpeta <code>Reports\</code> junto al ejecutable, o ejecútalo como administrador.</p>
+                            </div>
+                        </div>
+
+                        <h3>⚠️ LIMITACIONES Y SOLUCIONES</h3>
+                        <div class="card warning">
+                            <h4>📱 Alertas visuales y sonoras, sin envío externo</h4>
+                            <p><strong>¿Por qué?</strong> Simplicidad y seguridad en la versión Standard. Cuando un nodo cae o se recupera, verás el aviso en pantalla y escucharás un sonido de alerta.</p>
+                            <p><strong>Alternativas si necesitas notificar a otras personas:</strong></p>
+                            <ul>
+                                <li>Tomar screenshot del popup</li>
+                                <li>Usar los reportes/logs en <code>Reports\</code></li>
+                                <li>Integración manual con sistemas de tickets</li>
+                            </ul>
+                        </div>
+
+                        <h3>✅ CHECKLIST DE IMPLEMENTACIÓN</h3>
+                        <div class="card success">
+                            <h4>Primer uso:</h4>
+                            <ul>
+                                <li>Ejecutar como administrador (recomendado)</li>
+                                <li>Verificar que se cree la carpeta <code>Reports\</code> junto al ejecutable</li>
+                                <li>Probar con <code>8.8.8.8</code> en ICMP ECHO</li>
+                                <li>Probar con <code>google.com</code> puerto <code>80</code> en TCP CONNECT</li>
+                                <li>Probar el Escáner de Red con la IP de tu router</li>
+                                <li>Generar reporte de prueba</li>
+                            </ul>
+                        </div>
+
+                        <div class="card success">
+                            <h4>Para cada nodo nuevo:</h4>
+                            <ul>
+                                <li>Nombre descriptivo en "NODO"</li>
+                                <li>IP/URL correcta</li>
+                                <li>Protocolo adecuado (ICMP/TCP)</li>
+                                <li>Contactos si es alerta</li>
+                                <li>Verificar respuesta antes de dejar corriendo</li>
+                            </ul>
+                        </div>
+
+                        <h3>📞 SOPORTE Y RECURSOS</h3>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">💬</div>
+                                <h4>Grupo de Soporte</h4>
+                                <p><a href="https://chat.whatsapp.com/JpsYo9nwZJb6rT6mzuaFeN" target="_blank">Únete al grupo WhatsApp</a><br>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">📁</div>
+                                <h4>Carpeta de Logs</h4>
+                                <p><code>C:\MonitorNOC\</code><br>
+                                <small>Todos los registros y reportes</small></p>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🔄</div>
+                                <h4>Ciclo de Actualizaciones</h4>
+                            </div>
+                        </div>
+
+                        <div class="card danger">
+                            <h3>🚨 IMPORTANTE</h3>
+                            <p>Esta versión - Standard <strong>no reemplaza</strong> sistemas enterprise de monitoreo, pero es tu <strong>mejor aliado</strong> para diagnóstico rápido, evidencia profesional y monitoreo ligero.</p>
+                            <p style="text-align: center; font-size: 1.2rem; margin-top: 15px;">
+                                ✨ <strong>¡A monitorear se ha dicho!</strong> ✨<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Download Tab -->
+                <div id="download" class="tab-content">
+                    <div class="card success">
+                        <div style="text-align: center; padding: 20px 0;">
+                            <p style="margin: 0; color: var(--gray); font-size: 0.85rem;">
+                                Versión Portable — No requiere instalación
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Historial de Versiones -->
+                    <h3 style="margin-top: 30px;">🕓 Historial de Versiones</h3>
+                    <div style="position: relative; padding-left: 30px; border-left: 3px solid var(--primary); margin: 20px 0;">
+
+                        <!-- v Junio 2026 (NUEVA ACTUALIZACIÓN) -->
+                        <div style="position: relative; margin-bottom: 30px;">
+                            <div style="position: absolute; left: -41px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--success); border: 3px solid white; box-shadow: 0 0 0 3px var(--success);"></div>
+                            <div style="background: white; border-radius: 10px; padding: 18px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #d4edda; border-left: 5px solid var(--success);">
+                                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <span style="background: var(--success); color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">🆕 LATEST</span>
+                                        <strong style="font-size: 1.1rem;">Junio 2026</strong>
+                                    </div>
+                                    <a href="https://drive.google.com/drive/folders/1S9g75sB50olGpUKsJjbsD7Svbenp3Kox?usp=sharing" target="_blank"
+                                       style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--success); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; transition: all 0.3s;"
+                                       onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                                        📥 Descargar
+                                    </a>
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                                    <span style="display: inline-flex; align-items: center; gap: 5px; background: #e3f2fd; color: #1565c0; padding: 5px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;">🔄 Consolas ICMP y TCP tradicionales con métricas mejoradas</span>
+                                    <span style="display: inline-flex; align-items: center; gap: 5px; background: #fff3e0; color: #e65100; padding: 5px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;">⏱️ Alert System - Tiempo de alerta configurable</span>
+                                    <span style="display: inline-flex; align-items: center; gap: 5px; background: #e8f5e9; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600;">📦 Totalmente portable sin instalaciones intrusivas</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- v Mayo 2026 -->
+                        <div style="position: relative; margin-bottom: 30px;">
+                            <div style="position: absolute; left: -41px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--primary); border: 3px solid white; box-shadow: 0 0 0 3px var(--primary);"></div>
+                            <div style="background: white; border-radius: 10px; padding: 18px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid var(--border); border-left: 5px solid var(--primary);">
+                                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <span style="background: var(--gray); color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">📦 v Anterior</span>
+                                        <strong style="font-size: 1.1rem;">Mayo 2026</strong>
+                                    </div>
+                                    <a href="https://drive.google.com/drive/folders/1EucrZg8miMrIENnVqB6ijBVoSBESfyrt?usp=sharing" target="_blank"
+                                       style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; transition: all 0.3s;"
+                                       onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                                        📥 Descargar
+                                    </a>
+                                </div>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin: 0;">Versión anterior. Disponible para referencia o compatibilidad.</p>
+                            </div>
+                        </div>
+
+                        <!-- v Marzo 2026 -->
+                        <div style="position: relative; margin-bottom: 30px;">
+                            <div style="position: absolute; left: -41px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--primary); border: 3px solid white; box-shadow: 0 0 0 3px var(--primary);"></div>
+                            <div style="background: white; border-radius: 10px; padding: 18px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid var(--border); border-left: 5px solid var(--primary);">
+                                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <span style="background: var(--gray); color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">📦 v Anterior</span>
+                                        <strong style="font-size: 1.1rem;">Marzo 2026</strong>
+                                    </div>
+                                    <a href="https://drive.google.com/drive/folders/10-kggFUmnzw3y-9iTBcWn_Y3HANka70x?usp=sharing" target="_blank"
+                                       style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; transition: all 0.3s;"
+                                       onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                                        📥 Descargar
+                                    </a>
+                                </div>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin: 0;">Versión anterior. Disponible para referencia o compatibilidad.</p>
+                            </div>
+                        </div>
+
+                        <!-- v Enero 2026 -->
+                        <div style="position: relative; margin-bottom: 10px;">
+                            <div style="position: absolute; left: -41px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--primary); border: 3px solid white; box-shadow: 0 0 0 3px var(--primary);"></div>
+                            <div style="background: white; border-radius: 10px; padding: 18px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid var(--border); border-left: 5px solid var(--primary);">
+                                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <span style="background: var(--gray); color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">📦 v Anterior</span>
+                                        <strong style="font-size: 1.1rem;">Enero 2026</strong>
+                                    </div>
+                                    <a href="https://drive.google.com/drive/folders/1gkdfLvTrzkyGF4E67t3EsN9z9UXsN8Jc?usp=sharing" target="_blank"
+                                       style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; transition: all 0.3s;"
+                                       onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                                        📥 Descargar
+                                    </a>
+                                </div>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin: 0;">Versión anterior. Disponible para referencia o compatibilidad.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <h3>📋 Instrucciones de Instalación Paso a Paso</h3>
+
+                    <!-- Paso 1 -->
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Descargar el archivo RAR</div>
+                        <div class="step-content">
+
+                        </div>
+                    </div>
+
+                    <!-- Paso 2 -->
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Extraer el contenido</div>
+                        <div class="step-content">
+                            <p>Necesitas un programa para extraer archivos RAR como <strong>WinRAR</strong> o <strong>7-Zip</strong>.</p>
+
+                            <div class="dependency-box">
+                                <h4>🔧 Software necesario para extraer:</h4>
+                                <a href="https://www.7-zip.org/download.html" target="_blank" class="resource-link">
+                                    <div class="resource-icon">📦</div>
+                                    <div>
+                                        <strong>7-Zip (Gratuito)</strong><br>
+                                        <small>Descargar desde 7-zip.org</small>
+                                    </div>
+                                </a>
+                                <a href="https://winrar.es/descargas" target="_blank" class="resource-link">
+                                    <div class="resource-icon">📦</div>
+                                    <div>
+                                        <strong>WinRAR (Versión de prueba)</strong><br>
+                                        <small>Descargar desde win-rar.com</small>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <p>Extrae todos los archivos a una carpeta de tu preferencia (por ejemplo: <code>C:\NetworkMonitor\</code>).</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3 - IMPORTANTE -->
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-title"><span class="warning-icon">⚠️</span> CONTROL DE APLICACIONES DE WINDOWS</div>
+                        <div class="step-content">
+                            <p>Cuando ejecutes <code>NetworkMonitor.exe</code> por primera vez, Windows mostrará una advertencia de seguridad:</p>
+
+                            <div class="screenshot-container">
+                                <img src="https://www.profesionalreview.com/wp-content/uploads/2022/11/SmartScreen-3.jpeg" alt="Windows SmartScreen Advertencia" class="screenshot">
+                                <div class="screenshot-caption">
+                                    Ejemplo de la advertencia de SmartScreen en Windows
+                                </div>
+                            </div>
+
+                            <p><strong>Mensaje que verás:</strong></p>
+                            <div class="card warning" style="margin: 15px 0;">
+                                <h4>"Windows protegió su PC"</h4>
+                                <p>SmartScreen de Microsoft Defender impidió el inicio de una aplicación desconocida. Si ejecutas esta aplicación, podrías poner en riesgo el PC.</p>
+                                <p><strong>Aplicación:</strong> NetworkMonitor.exe<br>
+                                <strong>Editor:</strong> Editor desconocido</p>
+                                <p><strong>Ejecutar de todas formas</strong> | <strong>No ejecutar</strong></p>
+                            </div>
+
+                            <p><strong>¿Por qué sucede esto?</strong><br>
+                            Esto es normal porque la aplicación no tiene firma digital comercial (costosa). Monitor NOC es 100% seguro.</p>
+
+                            <p><strong>Cómo proceder:</strong></p>
+                            <ol>
+                                <li>Haz clic en <strong>"Más información"</strong> o <strong>"More info"</strong></li>
+                                <li>Luego haz clic en <strong>"Ejecutar de todas formas"</strong> o <strong>"Run anyway"</strong></li>
+                            </ol>
+
+                            <div class="note-box">
+                                <p><strong>💡 Importante:</strong> Solo necesitas hacer esto la primera vez que ejecutas la aplicación. Windows recordará tu elección para futuras ejecuciones.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>⚙️ Requisitos del Sistema</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">💻</div>
+                            <h4>Arquitectura</h4>
+                            <p><strong>64 bits</strong><br>
+                            <small>No compatible con 32 bits</small></p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">💿</div>
+                            <h4>Sistemas Operativos</h4>
+                            <p>• Windows 10/11 (64-bit)<br>
+                               • Windows Server 2016 | 2019 | 2022</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📦</div>
+                            <h4>Dependencias</h4>
+                            <p>Microsoft Visual C++ 2015-2022 Redistributable (x64)<br>
+                            <small><a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" target="_blank">Descargar desde Microsoft</a></small></p>
+                        </div>
+                    </div>
+
+                    <div class="card warning">
+                        <h3>⚠️ Notas Importantes</h3>
+                        <ul>
+                            <li>✅ <strong>Red:</strong> Necesitas conexión a internet para probar con servidores externos</li>
+                            <li>✅ <strong>Firewall:</strong> Asegúrate de permitir la aplicación en el firewall de Windows, EDR, XDR, etc</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- /content -->
+        </div><!-- /documentation-card -->
+    </div><!-- /container -->
+
+    <script>
+        // Tab Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-tabs a');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    // Show corresponding content
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) target.classList.add('active');
+                });
+            });
+
+            // Toggle sections
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    if (content) content.classList.toggle('active');
+                });
+            });
+
+            // Print button (si existe)
+            const printBtn = document.querySelector('.print-btn');
+            if (printBtn) {
+                printBtn.addEventListener('click', function() {
+                    window.print();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
