@@ -37,6 +37,7 @@
   --c-alertas:#c2410c;     --c-alertas-soft:#fdece3;
   --c-reporte:#0f766e;     --c-reporte-soft:#e5f4f2;
   --c-instalacion:#4338ca; --c-instalacion-soft:#ebeafd;
+  --c-contacto:#1e9e5a;    --c-contacto-soft:#e4f7ec;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -200,7 +201,8 @@ table.tbl td.ic{width:36px;color:var(--accent);text-align:center;font-weight:600
 
 
 
-.entry-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
+.entry-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:32px;}
+@media(max-width:900px){.entry-row{grid-template-columns:1fr 1fr;}}
 @media(max-width:700px){.entry-row{grid-template-columns:1fr;}}
 .entry-card{
   display:flex;flex-direction:column;align-items:flex-start;gap:10px;
@@ -230,6 +232,12 @@ table.tbl td.ic{width:36px;color:var(--accent);text-align:center;font-weight:600
 .entry-card[data-view="view-instalacion"]:hover{border-color:var(--c-instalacion);box-shadow:0 8px 20px -10px rgba(67,56,202,0.3);}
 .entry-card[data-view="view-instalacion"] .entry-ic{background:var(--c-instalacion-soft);color:var(--c-instalacion);}
 .entry-card[data-view="view-instalacion"]:hover .entry-bracket{color:var(--c-instalacion);}
+
+.entry-card.entry-contacto{text-decoration:none;}
+.entry-card.entry-contacto:hover{border-color:var(--c-contacto);box-shadow:0 8px 20px -10px rgba(30,158,90,0.3);}
+.entry-card.entry-contacto .entry-ic{background:var(--c-contacto-soft);color:var(--c-contacto);}
+.entry-card.entry-contacto:hover .entry-bracket{color:var(--c-contacto);}
+.entry-card.entry-contacto .entry-desc{text-decoration:none;}
 
 .view{display:none;}
 .view.active{display:block;animation:viewIn .3s ease;}
@@ -472,6 +480,16 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
         </div>
         <p class="entry-desc">Requisitos, persistencia de datos e historial de versiones.</p>
       </div>
+      <!-- Enlace por username de WhatsApp (función oficial en despliegue gradual desde 2026).
+           Si el enlace no abre el chat directamente en tu región/versión de WhatsApp,
+           usa la alternativa: abrir WhatsApp > Nuevo chat > buscar "ChrisRootkit". -->
+      <a class="entry-card entry-contacto" href="https://wa.me/ChrisRootkit" target="_blank" rel="noopener noreferrer">
+        <div class="entry-top">
+          <div class="entry-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.462 3.480 1.34 4.997L2 22l5.13-1.345a9.96 9.96 0 004.874 1.24h.004c5.514 0 9.997-4.483 9.997-9.997 0-2.67-1.04-5.18-2.928-7.070a9.933 9.933 0 00-7.073-2.825zm5.878 15.878a8.256 8.256 0 01-5.878 2.436h-.003a8.28 8.28 0 01-4.223-1.156l-.303-.18-3.045.799.813-2.968-.198-.305a8.264 8.264 0 01-1.268-4.404c0-4.573 3.723-8.294 8.298-8.294a8.245 8.245 0 015.869 2.433 8.234 8.234 0 012.428 5.866 8.256 8.256 0 01-2.49 5.773z"/></svg></div>
+          <span class="entry-bracket">[ CONTACTATE CON EL ADMINISTRADOR ]</span>
+        </div>
+        <p class="entry-desc">Soporte por WhatsApp con <strong>@ChrisRootkit</strong> para dudas, incidencias o solicitudes.</p>
+      </a>
     </div>
 
   </div><!-- /view home -->
@@ -747,27 +765,19 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
         <div class="tl-item latest">
           <div class="tl-head">
             <span class="tl-badge new">ACTUAL</span>
+            <span class="tl-date">2026.08</span>
+            <a class="tl-dl" href="https://drive.google.com/drive/folders/1mzNxOFPgnyGjhHWdjL4_X9hO-zUtGOHt?usp=sharing" target="_blank">Descargar →</a>
+          </div>
+          <div class="tl-body">Corrección de errores en la interfaz gráfica (GUI) de Python y en la generación de reportes.</div>
+<div class="tl-body">Implementación de modo claro y oscuro. Resumen por nodo más preciso y confiable.</div>
+        </div>
+          <div class="tl-head">
+            <span class="tl-badge new">ANTERIOR</span>
             <span class="tl-date">2026.06</span>
             <a class="tl-dl" href="https://drive.google.com/drive/folders/1S9g75sB50olGpUKsJjbsD7Svbenp3Kox?usp=sharing" target="_blank">Descargar →</a>
           </div>
           <div class="tl-body">Consolas ICMP/TCP con métricas ampliadas. Sistema de alertas con umbral configurable (1/5/10 min). Empaquetado portable.</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-head"><span class="tl-badge">ANTERIOR</span><span class="tl-date">2026.05</span>
-            <a class="tl-dl" href="https://drive.google.com/drive/folders/1EucrZg8miMrIENnVqB6ijBVoSBESfyrt?usp=sharing" target="_blank">Descargar →</a></div>
-          <div class="tl-body">Conservada para compatibilidad y referencia.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-head"><span class="tl-badge">ANTERIOR</span><span class="tl-date">2026.03</span>
-            <a class="tl-dl" href="https://drive.google.com/drive/folders/10-kggFUmnzw3y-9iTBcWn_Y3HANka70x?usp=sharing" target="_blank">Descargar →</a></div>
-          <div class="tl-body">Conservada para compatibilidad y referencia.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-head"><span class="tl-badge">ANTERIOR</span><span class="tl-date">2026.01</span>
-            <a class="tl-dl" href="https://drive.google.com/drive/folders/1gkdfLvTrzkyGF4E67t3EsN9z9UXsN8Jc?usp=sharing" target="_blank">Descargar →</a></div>
-          <div class="tl-body">Conservada para compatibilidad y referencia.</div>
-        </div>
-      </div>
 
       <h3 class="sub-title">Requisitos del sistema</h3>
       <table class="tbl">
@@ -836,7 +846,7 @@ function updateProgress(){
 window.addEventListener('scroll', updateProgress, {passive:true});
 updateProgress();
 
-const entryCards = document.querySelectorAll('.entry-card');
+const entryCards = document.querySelectorAll('.entry-card[data-view]');
 const views = document.querySelectorAll('.view');
 
 if('IntersectionObserver' in window){
