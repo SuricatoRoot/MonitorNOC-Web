@@ -416,6 +416,41 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
 .tl-dl:hover{background:var(--c-instalacion-soft);text-decoration:none;}
 .tl-body{color:var(--text-dim);font-size:13.4px;}
 
+.release-card{
+  display:flex;flex-direction:column;gap:16px;
+  background:linear-gradient(180deg, var(--c-instalacion-soft) 0%, var(--panel) 55%);
+  border:1px solid #d6d3fb;border-radius:14px;
+  padding:22px 24px;
+}
+.release-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.release-id{display:flex;align-items:center;gap:12px;flex-wrap:wrap;row-gap:8px;}
+.release-badge{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.5px;font-weight:700;
+  padding:4px 10px;border-radius:12px;
+  background:var(--success-soft);color:var(--success);border:1px solid #c3e6d1;
+}
+.release-version{font-family:var(--disp);font-weight:700;font-size:22px;color:var(--text);}
+.release-dl{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:13px;font-weight:700;
+  color:#fff;background:var(--c-instalacion);
+  padding:10px 18px;border-radius:9px;
+  box-shadow:0 6px 16px -6px rgba(67,56,202,0.5);
+  transition:background .15s, transform .1s;
+}
+.release-dl:hover{background:#372fb0;text-decoration:none;}
+.release-dl:active{transform:scale(0.98);}
+.release-notes{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.release-notes li{
+  display:flex;align-items:flex-start;gap:10px;
+  color:var(--text-dim);font-size:13.6px;line-height:1.55;
+}
+.release-notes li svg{flex-shrink:0;margin-top:3px;color:var(--c-instalacion);}
+.release-foot{
+  font-size:12.5px;color:var(--text-faint);
+  border-top:1px solid var(--border-soft);padding-top:12px;
+}
+
 .mono-block{
   background:#0b1017;border:1px solid #1c2735;border-radius:8px;
   padding:14px 16px;font-family:var(--mono);font-size:12.2px;color:#c8d3df;
@@ -445,6 +480,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
   <div class="topbar-left">
     <div class="topbar-logo">N</div>
     <div class="topbar-title">STANDARD</div>
+    <span class="pill" style="color:var(--success);border-color:#c3e6d1;background:var(--success-soft);font-weight:600;">PORTABLE</span>
   </div>
   <div class="topbar-right">
     <span class="pill" id="sessionPill" title="Tiempo con esta página abierta">SESIÓN <span id="sessionNow">00:00</span></span>
@@ -461,7 +497,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
     <!-- INTRODUCCIÓN -->
     <div class="intro">
       <h1>Monitor <span class="accent-word">NOC</span></h1>
-      <p class="lead">Aplicación de escritorio para Windows que centraliza ping ICMP, TCP Connect, escaneo de red por <span class="abbr" data-tip="Address Resolution Protocol: resuelve IP a MAC en la LAN. El escáner consulta la caché ARP local para detectar equipos.">ARP</span>/ping sweep, diagnóstico de ruta multi-fase y alertas por umbral de inactividad, sobre múltiples hosts en paralelo. Sustituye el uso disperso de <code>ping</code> y <code>tracert</code> por una sola interfaz con persistencia de estado y generación de reportes.</p>
+      <p class="lead">Herramienta <strong>portable</strong> para Windows, construida sobre <strong>PySide6</strong> (Qt), que centraliza ping ICMP, TCP Connect y escaneo de red por segmento <strong>/24</strong> vía <span class="abbr" data-tip="Address Resolution Protocol: resuelve IP a MAC en la LAN. El escáner consulta la caché ARP local para detectar equipos.">ARP</span>/ping sweep, sobre múltiples hosts en paralelo sin lentitud en la interfaz. Sustituye el uso disperso de <code>ping</code> y <code>tracert</code> por reportes HTML con umbrales de alerta configurables según el estándar de cada empresa.</p>
     </div>
 
     <!-- ENTRADAS -->
@@ -488,7 +524,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
           <div class="entry-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.462 3.480 1.34 4.997L2 22l5.13-1.345a9.96 9.96 0 004.874 1.24h.004c5.514 0 9.997-4.483 9.997-9.997 0-2.67-1.04-5.18-2.928-7.070a9.933 9.933 0 00-7.073-2.825zm5.878 15.878a8.256 8.256 0 01-5.878 2.436h-.003a8.28 8.28 0 01-4.223-1.156l-.303-.18-3.045.799.813-2.968-.198-.305a8.264 8.264 0 01-1.268-4.404c0-4.573 3.723-8.294 8.298-8.294a8.245 8.245 0 015.869 2.433 8.234 8.234 0 012.428 5.866 8.256 8.256 0 01-2.49 5.773z"/></svg></div>
           <span class="entry-bracket">[ CONTACTATE CON EL ADMINISTRADOR ]</span>
         </div>
-        <p class="entry-desc">Soporte por WhatsApp con <strong>@ChrisRootkit</strong> para dudas, incidencias o solicitudes.</p>
+        <p class="entry-desc">Soporte directo por WhatsApp con <strong>@ChrisRootkit</strong> para dudas, incidencias o solicitudes.</p>
       </a>
     </div>
 
@@ -724,7 +760,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
           <tr><td class="ic">－</td><td><strong>REMOVER ALL</strong></td><td>Elimina todos los monitores de la pestaña actual</td><td>Pide confirmación previa</td></tr>
           <tr><td class="ic">▤</td><td><strong>REPORTE</strong></td><td>Genera el dashboard HTML consolidado</td><td>Se guarda en <code>Reports\</code></td></tr>
           <tr><td class="ic">▢</td><td><strong>LOG</strong></td><td>Abre la carpeta de reportes y registros</td><td>Junto al ejecutable</td></tr>
-          <tr><td class="ic">◎</td><td><strong>ESCANEAR</strong></td><td>Descubre equipos activos desde la IP del router (ping sweep + <span class="abbr" data-tip="Address Resolution Protocol: resuelve IP a MAC en la LAN. El escáner consulta la caché ARP local para detectar equipos.">ARP</span>)</td><td>Solo disponible en ICMP ECHO</td></tr>
+          <tr><td class="ic">◎</td><td><strong>ESCANEAR</strong></td><td>Descubre equipos activos en toda la red /24 desde la IP del router (ping sweep + <span class="abbr" data-tip="Address Resolution Protocol: resuelve IP a MAC en la LAN. El escáner consulta la caché ARP local para detectar equipos.">ARP</span>)</td><td>Solo disponible en ICMP ECHO</td></tr>
         </tbody>
       </table>
 
@@ -760,24 +796,31 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
     </div>
     <div class="box-body">
 
-      <h3 class="sub-title">Historial de versiones</h3>
-      <div class="timeline">
-        <div class="tl-item latest">
-          <div class="tl-head">
-            <span class="tl-badge new">ACTUAL</span>
-            <span class="tl-date">2026.08</span>
-            <a class="tl-dl" href="https://drive.google.com/drive/folders/1mzNxOFPgnyGjhHWdjL4_X9hO-zUtGOHt?usp=sharing" target="_blank">Descargar →</a>
+      <h3 class="sub-title">Versión disponible</h3>
+      <div class="release-card">
+        <div class="release-top">
+          <div class="release-id">
+            <span class="release-badge">ACTUAL</span>
+            <span class="release-version">2026.08</span>
+            <span class="release-badge" style="background:var(--c-tcp-soft);color:var(--c-tcp);border-color:#ddd0fa;">MOTOR: PYSIDE6</span>
           </div>
-          <div class="tl-body">Corrección de errores en la interfaz gráfica (GUI) de Python y en la generación de reportes.</div>
-<div class="tl-body">Implementación de modo claro y oscuro. Resumen por nodo más preciso y confiable.</div>
+          <a class="release-dl" href="https://drive.google.com/drive/folders/1mzNxOFPgnyGjhHWdjL4_X9hO-zUtGOHt?usp=sharing" target="_blank">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Descargar
+          </a>
         </div>
-          <div class="tl-head">
-            <span class="tl-badge new">ANTERIOR</span>
-            <span class="tl-date">2026.06</span>
-            <a class="tl-dl" href="https://drive.google.com/drive/folders/1S9g75sB50olGpUKsJjbsD7Svbenp3Kox?usp=sharing" target="_blank">Descargar →</a>
-          </div>
-          <div class="tl-body">Consolas ICMP/TCP con métricas ampliadas. Sistema de alertas con umbral configurable (1/5/10 min). Empaquetado portable.</div>
-        </div>
+        <ul class="release-notes">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Migración de Tkinter a PySide6</strong>: interfaz reescrita sobre Qt para eliminar la lentitud del GUI anterior y soportar mayor carga de nodos sin bloquear la ventana.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Escaneo de red completa /24</strong>: el descubrimiento por ping sweep/ARP ya soporta un segmento completo (hasta 254 hosts) sin degradar el rendimiento de la interfaz.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Umbrales de reporte configurables</strong>: la herramienta trae una configuración por defecto, pero los umbrales de <em>packet loss</em> (advertencia/crítico) y de latencia (advertencia/lentitud) se pueden ajustar desde <code>REPORT CONFIGURATION</code> para que el reporte HTML refleje el estándar de monitoreo de cada empresa.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span>Corrección de errores en la generación de reportes e implementación de modo claro y oscuro.</span></li>
+        </ul>
+      </div>
+
+      <div class="card" style="max-width:680px;border-left-width:6px;border-left-color:var(--c-tcp);margin-top:18px;">
+        <h4 style="display:flex;align-items:center;gap:8px;color:var(--c-tcp);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Por qué el cambio de framework</h4>
+        <p>El GUI anterior (Tkinter) mostraba cuellos de botella al monitorear muchos nodos en paralelo o al lanzar un escaneo amplio de red. PySide6 (bindings oficiales de Qt para Python) maneja el renderizado y los hilos de red de forma más eficiente, lo que permite escanear un segmento /24 completo y mantener la interfaz fluida durante el monitoreo continuo.</p>
+      </div>
 
       <h3 class="sub-title">Requisitos del sistema</h3>
       <table class="tbl">
