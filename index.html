@@ -780,6 +780,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
           <tr><td><strong>ALERT CONFIG</strong></td><td>Cada cuánto se repite el aviso de un equipo que sigue caído: 1, 5 o 10 min (por defecto 10 min).</td></tr>
           <tr><td><strong>Avisos</strong></td><td>Ventanas emergentes en la página LIVE y sonido en el equipo local.</td></tr>
           <tr><td><strong>Monitores</strong></td><td>Sin límite de grupos ni de equipos por grupo.</td></tr>
+          <tr><td><strong>Segundo plano</strong></td><td>Si cierras la ventana, el monitoreo y el historial siguen; Monitor NOC queda en la bandeja de Windows y la página LIVE se reconecta sola.</td></tr>
           <tr><td><strong>Nota</strong></td><td>Cada fila tiene una nota libre; si no escribiste ninguna, al abrirla se ve una guía de uso.</td></tr>
           <tr><td><strong>Página local</strong></td><td>Solo se sirve en <code>127.0.0.1</code> (no se expone a la red) y con una clave de acceso por sesión. Se guarda una copia en <code>logs\ALERTS\alertas.html</code>, de solo lectura.</td></tr>
         </tbody>
@@ -934,7 +935,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
             <span class="release-version">Enterprise v1 · 2026.10</span>
             <span class="release-badge" style="background:var(--c-tcp-soft);color:var(--c-tcp);border-color:#ddd0fa;">MOTOR: PYSIDE6</span>
           </div>
-          <a class="release-dl" href="https://drive.google.com/drive/folders/1mzNxOFPgnyGjhHWdjL4_X9hO-zUtGOHt?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <a class="release-dl" href="https://drive.google.com/drive/folders/1BcROf_uu_l_7gFUjqHFq7MJUk8XFw2b6?usp=drive_link" target="_blank" rel="noopener noreferrer">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
             Descargar
           </a>
@@ -944,6 +945,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Conteo exacto como ping.exe</strong>: el motor ICMP usa la misma función de Windows que la consola. Enviados, recibidos y perdidos coinciden, y el nodo pasa a OFFLINE tras 3 pérdidas seguidas sin dejar de registrar.</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Reporte = log</strong>: el reporte HTML sale del mismo registro que el log, sin recortes. Logs separados en <code>MANUAL</code> y <code>ROUTER SCAN\&lt;IP&gt;</code>, y el gráfico de Sensor incluido para verlo sin internet.</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Escaneo de red</strong>: elección LOCAL o VENTANA EXTERNA; la ventana externa suma <strong>RE-SCAN</strong> para limpiar y volver a escanear la misma IP.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Sigue en segundo plano</strong>: cerrar la ventana con la X no detiene nada. Monitor NOC queda en la bandeja de Windows (junto al reloj) y ALERT-ROUTING sigue vigilando sin perder el historial de caídas; la página LIVE se reconecta sola. Para salir de verdad: clic derecho en el icono → Salir.</span></li>
           <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Activación por equipo</strong>: licencia de 1 año ligada al hardware de cada PC; si se borra la carpeta portable y se vuelve a copiar, la activación se conserva.</span></li>
         </ul>
         <div class="release-foot">Sin límite de monitores por pestaña. Estado guardado en JSON.</div>
@@ -953,7 +955,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
       <div class="timeline">
         <div class="tl-item latest">
           <div class="tl-head"><span class="tl-date">Enterprise v1 · 2026.10</span><span class="tl-badge new">ACTUAL</span></div>
-          <div class="tl-body">ALERT-ROUTING, motor ICMP como ping.exe, reporte idéntico al log, activación por equipo.</div>
+          <div class="tl-body">ALERT-ROUTING, motor ICMP como ping.exe, reporte idéntico al log, segundo plano desde la bandeja de Windows y activación por equipo.</div>
         </div>
         <div class="tl-item">
           <div class="tl-head"><span class="tl-date">Standard · 2026.08</span><span class="tl-badge">ANTERIOR</span></div>
