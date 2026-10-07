@@ -943,11 +943,6 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
         </div>
       </div>
 
-      <div class="card danger" style="max-width:680px;border-left-width:6px;margin-top:18px;">
-        <h4><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>Compatibilidad de sistema operativo</h4>
-        <p><strong style="color:var(--text)">No funciona en Windows 7, ni en Windows Server 2012 R2 o 2016</strong>: son incompatibles con la versión actual de la herramienta. Funciona correctamente en <strong style="color:var(--text)">Windows 10, Windows 11 y Windows Server 2022</strong>.</p>
-      </div>
-
       <h3 class="sub-title">Historial de versiones</h3>
       <div class="timeline" style="max-width:720px;">
         <div class="tl-item latest">
@@ -986,7 +981,10 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
       <table class="tbl">
         <tbody>
           <tr><td style="width:200px;"><strong>Arquitectura</strong></td><td>x64 únicamente. No hay build de 32 bits.</td></tr>
-          <tr><td><strong>Sistema operativo</strong></td><td>Windows 10/11 (64-bit) y Windows Server 2022. <strong style="color:var(--danger)">No compatible</strong> con Windows 7 ni Windows Server 2012 R2/2016.</td></tr>
+          <tr><td style="vertical-align:top;"><strong>Sistema operativo</strong></td><td>
+            <div style="display:flex;align-items:center;gap:7px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><strong style="color:var(--text)">Compatible:</strong> Windows 10, Windows 11 (64-bit) y Windows Server 2022</div>
+            <div style="display:flex;align-items:center;gap:7px;margin-top:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.6"><path d="M18 6L6 18M6 6l12 12"/></svg><strong style="color:var(--danger)">No compatible:</strong> Windows 7, Windows Server 2012 R2 y Windows Server 2016</div>
+          </td></tr>
           <tr><td><strong>Dependencias</strong></td><td>Microsoft Visual C++ 2015–2022 Redistributable (x64) — <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" target="_blank">vc_redist.x64.exe</a></td></tr>
           <tr><td><strong>Red</strong></td><td>Sin restricciones para monitoreo en LAN. Conexión a internet solo si se monitorean hosts externos.</td></tr>
           <tr><td><strong>Permisos</strong></td><td>La primera activación necesita poder escribir en el equipo; si falla, ejecuta la herramienta como administrador una vez.</td></tr>
