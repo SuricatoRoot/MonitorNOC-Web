@@ -497,7 +497,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
     <!-- INTRODUCCIÓN -->
     <div class="intro">
       <h1>Monitor <span class="accent-word">NOC</span></h1>
-      <p class="lead">Herramienta <strong>portable</strong> para Windows que centraliza ping ICMP, TCP Connect, escaneo de red por segmento <strong>/24</strong> vía <span class="abbr" data-tip="Address Resolution Protocol: resuelve IP a MAC en la LAN. El escáner consulta la caché ARP local para detectar equipos.">ARP</span>/ping sweep y acceso remoto directo por <strong>VNC</strong> y <strong>SSH</strong>, sobre múltiples hosts en paralelo sin lentitud en la interfaz. Sustituye el uso disperso de <code>ping</code> y <code>tracert</code> por reportes HTML con umbrales de alerta configurables según el estándar de cada empresa.</p>
+      <p class="lead">Herramienta <strong>portable</strong> para Windows que centraliza ping ICMP, TCP Connect, escaneo de red por segmento <strong>/24</strong> vía <span class="abbr" data-tip="Address Resolution Protocol: resuelve IP a MAC en la LAN. El escáner consulta la caché ARP local para detectar equipos.">ARP</span>/ping sweep y acceso remoto directo por <strong>VNC</strong> y <strong>SSH</strong> (requiere tener instalado algún cliente VNC y SSH en el equipo), sobre múltiples hosts en paralelo sin lentitud en la interfaz. Sustituye el uso disperso de <code>ping</code> y <code>tracert</code> por reportes HTML con umbrales de alerta configurables según el estándar de cada empresa.</p>
     </div>
 
     <!-- ENTRADAS -->
@@ -558,7 +558,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
 
     <!-- PANEL: ICMP -->
     <div class="modpanel" id="p-icmp">
-      <p style="color:var(--text-dim);font-size:14px;max-width:700px;margin-bottom:20px;">Ejecuta ping ICMP contra cualquier IP o nombre de host. Cada nodo corre en su propio hilo, con consola de métricas en vivo, estimación heurística del sistema operativo remoto a partir del <span class="abbr" data-tip="Time To Live: nº de saltos restantes antes de que el paquete se descarte. Su valor inicial varía según el SO de origen (64, 128, 255...).">TTL</span>, y acceso remoto directo al equipo.</p>
+      <p style="color:var(--text-dim);font-size:14px;max-width:700px;margin-bottom:20px;">Ejecuta ping ICMP contra cualquier IP o nombre de host. Cada nodo corre en su propio hilo, con consola de métricas en vivo, estimación heurística del sistema operativo remoto a partir del <span class="abbr" data-tip="Time To Live: nº de saltos restantes antes de que el paquete se descarte. Su valor inicial varía según el SO de origen (64, 128, 255...).">TTL</span>, y acceso remoto directo al equipo. Para que los botones de <strong style="color:var(--text)">REMOTING</strong> (VNC/SSH) funcionen, este equipo necesita tener instalado algún cliente VNC y SSH.</p>
 
       <div class="pulse-widget">
         <div class="pulse-label">PULSO ICMP <span class="pulse-live"><span class="pulse-dot"></span>EN VIVO</span></div>
@@ -592,6 +592,32 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
           <h4>REMOTING: VNC · SSH</h4>
           <p>Acceso remoto directo al equipo del nodo, sin salir de la fila: escritorio por VNC o terminal por SSH.</p>
         </div>
+      </div>
+
+      <div class="card warn" style="margin-top:16px;max-width:680px;">
+        <h4><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M3 9v10a2 2 0 002 2h4m10-12v10a2 2 0 01-2 2h-4"/></svg>REMOTING — clientes recomendados</h4>
+        <p>Para que la columna <strong style="color:var(--text)">REMOTING</strong> (conectar por VNC o SSH desde la pestaña ICMP) funcione bien, este equipo necesita tener instalado alguno de estos clientes. No hace falta instalar todos: con uno de cada lista alcanza.</p>
+        <div class="grid-2" style="margin-top:10px;">
+          <div>
+            <strong style="color:var(--text);font-size:13px;">VNC</strong>
+            <ul style="margin:4px 0 0 18px;color:var(--text-dim);font-size:13.4px;line-height:1.7;">
+              <li>RealVNC Viewer</li>
+              <li>TightVNC Viewer</li>
+              <li>UltraVNC Viewer</li>
+              <li>TigerVNC Viewer</li>
+            </ul>
+          </div>
+          <div>
+            <strong style="color:var(--text);font-size:13px;">SSH</strong>
+            <ul style="margin:4px 0 0 18px;color:var(--text-dim);font-size:13.4px;line-height:1.7;">
+              <li>PuTTY</li>
+              <li>KiTTY</li>
+              <li>MobaXterm</li>
+              <li>OpenSSH (Windows)</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:10px;">Si no hay ninguno instalado, esos botones avisan que no se detectó ningún cliente compatible.</p>
       </div>
 
       <div class="grid-2" style="margin-top:24px;">
