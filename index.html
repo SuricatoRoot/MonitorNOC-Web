@@ -202,9 +202,15 @@ table.tbl td.ic{width:36px;color:var(--accent);text-align:center;font-weight:600
 
 
 
-.entry-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:32px;}
+.entry-row{display:grid;grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));gap:16px;margin-top:32px;}
 @media(max-width:900px){.entry-row{grid-template-columns:1fr 1fr;}}
 @media(max-width:700px){.entry-row{grid-template-columns:1fr;}}
+
+.entry-card.entry-soon{cursor:default;opacity:0.72;background:repeating-linear-gradient(135deg, var(--panel) 0 10px, var(--panel-2) 10px 20px);}
+.entry-card.entry-soon:hover{border-color:var(--border);box-shadow:none;}
+.entry-card.entry-soon .entry-ic{background:var(--panel-2);color:var(--text-faint);}
+.entry-card.entry-soon .entry-bracket{color:var(--text-faint);}
+.entry-card.entry-soon:hover .entry-bracket{color:var(--text-faint);}
 .entry-card{
   display:flex;flex-direction:column;align-items:flex-start;gap:10px;
   background:var(--panel);border:1px solid var(--border);border-radius:14px;
@@ -526,6 +532,13 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
         </div>
         <p class="entry-desc">Soporte directo por WhatsApp con <strong>@SuricatoRoot</strong> para dudas, incidencias o solicitudes.</p>
       </a>
+      <div class="entry-card entry-soon" aria-disabled="true">
+        <div class="entry-top">
+          <div class="entry-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+          <span class="entry-bracket">[ PRÓXIMAMENTE ]</span>
+        </div>
+        <p class="entry-desc">Explicación en video de las dos versiones (STANDARD y SERVER).</p>
+      </div>
     </div>
 
   </div><!-- /view home -->
