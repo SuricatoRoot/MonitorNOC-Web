@@ -643,22 +643,22 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
         </figure>
       </div>
 
-      <div class="card warn" style="margin-top:16px;max-width:680px;">
+      <div class="card warn" style="margin-top:16px;">
         <h4><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M3 9v10a2 2 0 002 2h4m10-12v10a2 2 0 01-2 2h-4"/></svg>REMOTING — clientes recomendados</h4>
-        <p>Para que la columna <strong style="color:var(--text)">REMOTING</strong> (conectar por VNC o SSH desde la pestaña ICMP) funcione bien, este equipo necesita tener instalado alguno de estos clientes. No hace falta instalar todos: con uno de cada lista alcanza.</p>
-        <div class="grid-2" style="margin-top:10px;">
-          <div>
+        <p style="max-width:720px;">Para que la columna <strong style="color:var(--text)">REMOTING</strong> (conectar por VNC o SSH desde la pestaña ICMP) funcione bien, este equipo necesita tener instalado alguno de estos clientes. No hace falta instalar todos: con uno de cada lista alcanza.</p>
+        <div class="grid-2" style="margin-top:14px;gap:20px;">
+          <div style="background:var(--panel);border:1px solid var(--border-soft);border-radius:10px;padding:14px 16px;">
             <strong style="color:var(--text);font-size:13px;">VNC</strong>
-            <ul style="margin:4px 0 0 18px;color:var(--text-dim);font-size:13.4px;line-height:1.7;">
+            <ul style="margin:6px 0 0 18px;color:var(--text-dim);font-size:13.4px;line-height:1.8;">
               <li>RealVNC Viewer</li>
               <li>TightVNC Viewer</li>
               <li>UltraVNC Viewer</li>
               <li>TigerVNC Viewer</li>
             </ul>
           </div>
-          <div>
+          <div style="background:var(--panel);border:1px solid var(--border-soft);border-radius:10px;padding:14px 16px;">
             <strong style="color:var(--text);font-size:13px;">SSH</strong>
-            <ul style="margin:4px 0 0 18px;color:var(--text-dim);font-size:13.4px;line-height:1.7;">
+            <ul style="margin:6px 0 0 18px;color:var(--text-dim);font-size:13.4px;line-height:1.8;">
               <li>PuTTY</li>
               <li>KiTTY</li>
               <li>MobaXterm</li>
@@ -666,7 +666,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
             </ul>
           </div>
         </div>
-        <p style="margin-top:10px;">Si no hay ninguno instalado, esos botones avisan que no se detectó ningún cliente compatible.</p>
+        <p style="margin-top:12px;max-width:720px;">Si no hay ninguno instalado, esos botones avisan que no se detectó ningún cliente compatible.</p>
       </div>
 
       <h3 class="sub-title">Diagnóstico completo — 5 fases</h3>
@@ -909,7 +909,7 @@ figcaption{font-size:12.3px;color:var(--text-faint);margin-top:8px;font-style:it
       <table class="tbl">
         <thead><tr><th width="50">Icono</th><th>Control</th><th>Qué hace</th><th>Notas</th></tr></thead>
         <tbody>
-          <tr><td class="ic">＋</td><td><strong>ADD_MONITOR</strong></td><td>Añade un nuevo campo para monitorear otra IP/URL</td><td>Máximo 15, solo en ICMP</td></tr>
+          <tr><td class="ic">＋</td><td><strong>ADD_MONITOR</strong></td><td>Añade un nuevo campo para monitorear otra IP/URL</td><td>Máximo 15, solo en ICMP (versión Standard)</td></tr>
           <tr><td class="ic">－</td><td><strong>REMOVER ALL</strong></td><td>Elimina todos los monitores de la pestaña actual</td><td>Pide confirmación previa</td></tr>
           <tr><td class="ic">▤</td><td><strong>REPORT</strong></td><td>Despliega un menú: <code>VIEW REPORT</code> (abre el dashboard HTML), <code>SETTINGS</code> (umbrales de alerta) y <code>LOG</code> (carpeta de reportes y registros)</td><td>Se guarda en <code>Reports\</code></td></tr>
           <tr><td class="ic">◎</td><td><strong>SCAN</strong></td><td>Descubre equipos activos en toda la red /24 desde la IP indicada en <code>GATEWAY</code> (ping sweep + <span class="abbr" data-tip="Address Resolution Protocol: resuelve IP a MAC en la LAN. El escáner consulta la caché ARP local para detectar equipos.">ARP</span>)</td><td>Solo disponible en ICMP</td></tr>
